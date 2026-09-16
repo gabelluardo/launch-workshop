@@ -125,5 +125,5 @@ function parsePlugRef(ref: string): PlugRef {
   return { sdk, name }
 }
 
-const SDK_NAME = /^(?:[a-z0-9]-?)*[a-z](?:-?[a-z0-9])*$
+const SDK_NAME = /^(?:[a-z0-9]-?)*[a-z](?:-?[a-z0-9])*$/
 const PLUG_NAME = /^[a-z](?:-?[a-z0-9])*$/
