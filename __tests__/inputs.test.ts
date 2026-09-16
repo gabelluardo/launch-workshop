@@ -6,7 +6,7 @@ beforeEach(() => {
     INPUT_CHANNEL: 'latest/edge',
     INPUT_PROJECT: '/project',
     INPUT_WORKSHOP: 'dev',
-    INPUT_CACHE_KEY: 'project-config',
+    ['INPUT_CACHE-KEY']: 'project-config',
     INPUT_CACHE: 'sdk:plug \n \n  :system-plug\n\n'
   })
 })
@@ -75,7 +75,7 @@ test('allows no workshop', () => {
 })
 
 test('allows no cache key', () => {
-  delete process.env.INPUT_CACHE_KEY
+  delete process.env['INPUT_CACHE-KEY']
 
   expect(getInputs().cacheKey).toBe('')
 })
