@@ -23,6 +23,10 @@ export type Inputs = {
    */
   workshop: string
   /**
+   * Caller-supplied identity for cached mount plugs.
+   */
+  cacheKey: string
+  /**
    * Mount plugs to cache across workflow runs.
    */
   cache: PlugRef[]
@@ -63,6 +67,7 @@ export function getInputs(): Inputs {
   core.debug(`Project directory: ${project}`)
 
   const workshop = core.getInput('workshop')
+  const cacheKey = core.getInput('cache-key')
 
   const cache = core
     .getInput('cache')
@@ -71,7 +76,7 @@ export function getInputs(): Inputs {
     .filter(Boolean)
     .map(parsePlugRef)
 
-  return { channel, revision, project, workshop, cache }
+  return { channel, revision, project, workshop, cacheKey, cache }
 }
 
 function fullChannel(channel: string): string {
@@ -120,5 +125,5 @@ function parsePlugRef(ref: string): PlugRef {
   return { sdk, name }
 }
 
-const SDK_NAME = /^(?:[a-z0-9]-?)*[a-z](?:-?[a-z0-9])*$/
+const SDK_NAME = /^(?:[a-z0-9]-?)*[a-z](?:-?[a-z0-9])*$
 const PLUG_NAME = /^[a-z](?:-?[a-z0-9])*$/
